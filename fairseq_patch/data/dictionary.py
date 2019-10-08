@@ -19,10 +19,14 @@ class Dictionary(object):
 
     def __init__(
         self,
-        pad='<pad>',
-        eos='</s>',
-        unk='<unk>',
-        bos='<s>',
+        pad='<PAD>',
+        eos='<EOS>',
+        unk='<UNK>',
+        bos='<BOS>',
+        #pad='<pad>',
+        #eos='</s>',
+        #unk='<unk>',
+        #bos='<s>',
         extra_special_symbols=None,
     ):
         self.unk_word, self.pad_word, self.eos_word = unk, pad, eos
