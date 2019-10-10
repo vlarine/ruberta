@@ -1,16 +1,38 @@
 import os
 import random
+import re
 import youtokentome as yttm
 
 
 DATA_DIR = '../data/'
 ALL_FILE = '{}/all.txt'.format(DATA_DIR)
+ALL_FOR_BPE_FILE = '{}/all_for_bpe.txt'.format(DATA_DIR)
 BPE_FILE = '{}/vocab_30000.bpe'.format(DATA_DIR)
+TMP_FILE = '{}/bpe_tmp_.txt'.format(DATA_DIR)
+
 
 if False:
+    print('Preprocess BPE train data')
+    """
+        Exclude from the dictionary tokens with the special characters at the end.
+    """
+
+    specials = ',.-"!:)(;/—«»*?=><“”–+\'][%_~#'
+    re_begin = re.compile('(\S)([,.\-"!:\)\(;/—«»*?=><“”–+\'\]\[%_~#])'.format(specials))
+    re_end = re.compile('([,.\-"!:\)\(;/—«»*?=><“”–+\'\]\[%_~#])(\S)'.format(specials))
+
+    with open(ALL_FOR_BPE_FILE) as f, open(TMP_FILE, 'w') as wf:
+        wf.write(' '.join(['?#!' + s for s in specials]) + '\n')
+        for line in f:
+            line = re_begin.sub(r'\1 \2', line)
+            line = re_end.sub(r'\1 \2', line)
+            wf.write(line)
+
+
+if True:
     print('Train BPE model')
     yttm.BPE.train(
-        data=ALL_FILE,
+        data=TMP_FILE,
         vocab_size=30000,
         model=BPE_FILE,
         n_threads=4,
@@ -18,12 +40,14 @@ if False:
         pad_id=1, unk_id=3, bos_id=0, eos_id=2
     )
 
+
 if True:
     print('Test BPE model')
     bpe = yttm.BPE(model=BPE_FILE)
     print(bpe.vocab()[:1000])
 
-if False:
+
+if True:
     print('Split train/test/valid')
     with open(ALL_FILE) as f, \
          open('{}/valid.txt'.format(DATA_DIR), 'w') as wf1, \
