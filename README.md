@@ -12,7 +12,7 @@ Training a Rossian RoBERTA model using:
 
 ## Training
 
-1. Copy a YouTokenToMe tokenizer class and token names changes in Fairseq's dictionary class: 
+1. Copy the YouTokenToMe tokenizer class and token names changes in Fairseq's dictionary class: 
 
 ```bash
 $ cp -fr fairseq_patch/* fairseq/
