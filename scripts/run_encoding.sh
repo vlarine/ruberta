@@ -6,21 +6,21 @@ if true; then
         --inputs ../data/test.txt \
         --outputs ../data/test_split.bpe \
         --max-len 512 \
-        --workers 4
+        --workers 10
 
     python3 multiprocessing_bpe_encoder.py \
         --vocab-bpe ../data/vocab_30000.bpe \
         --inputs ../data/valid.txt \
         --outputs ../data/valid_split.bpe \
         --max-len 512 \
-        --workers 4
+        --workers 10
 
     python3 multiprocessing_bpe_encoder.py \
         --vocab-bpe ../data/vocab_30000.bpe \
         --inputs ../data/train.txt \
         --outputs ../data/train_split.bpe \
         --max-len 512 \
-        --workers 4
+        --workers 10
 
 fi
 
@@ -34,6 +34,6 @@ if true; then
         --testpref ../data/test_split.bpe \
         --destdir ../data/bpe \
         --joined-dictionary \
-        --workers 4
+        --workers 10
 
 fi
