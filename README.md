@@ -1,3 +1,5 @@
+![RuBERTa](https://github.com/vlarine/ruberta/blob/master/img/ruberta.png)
+
 # Russian RoBERTa
 
 Training a Rossian RoBERTA model using:
@@ -12,27 +14,29 @@ Training a Rossian RoBERTA model using:
 
 ## Training
 
-1. Copy the YouTokenToMe tokenizer class and token names changes in Fairseq's dictionary class: 
-
-```bash
-$ cp -fr fairseq_patch/* fairseq/
-```
-
-2. Train a tokenizer model and split data on train/valid/test (change paths if needed):
+1. Train a tokenizer model and split data on train/valid/test (change paths if needed):
 
 ```bash
 $ python3 ./scripts/run_pretraining.py
 ```
 
-3. Encode and binarize the data:
+2. Encode and binarize the data:
 
 ```bash
 $ ./scripts/run_encoding.sh
 ```
 
-4. Start training:
+3. Start training:
 
 ```bash
 $ ./scripts/run_train_16.sh
 ```
+
+## Pretrained models
+
+A model trained on russian Wiki + [Taiga corpus](https://tatianashavrina.github.io/taiga_site/). Trained ~3 days on 2x1080Ti:
+[RuBERTa-base, batch 256, 20k steps](https://drive.google.com/open?id=1MC-5Qy-qWq1mHMiF1D7GIsUwYLuLanmy)
+
+F1 score on [Sber SQuAD dataset](https://github.com/vlarine/transformers-ru): 74.05
+
 
