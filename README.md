@@ -1,4 +1,4 @@
-![RuBERTa](https://github.com/vlarine/ruberta/blob/master/img/ruberta.png)
+![RuBERTa](https://github.com/vlarine/ruberta/blob/master/img/ruberta.png | width=300)
 
 # Russian RoBERTa
 
