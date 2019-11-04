@@ -35,6 +35,7 @@ $ ./scripts/run_train_16.sh
 ## Pretrained models
 
 A model trained on russian Wiki + [Taiga corpus](https://tatianashavrina.github.io/taiga_site/):
+
 [RuBERTa-base, batch 264, 65k steps](https://drive.google.com/open?id=1WYpuSCL8oEtW65HIN1izsN_cR5Mizqmd)
 
 <img src="https://github.com/vlarine/ruberta/blob/master/img/train_curve.png" width="600px" />
