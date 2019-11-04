@@ -34,9 +34,11 @@ $ ./scripts/run_train_16.sh
 
 ## Pretrained models
 
-A model trained on russian Wiki + [Taiga corpus](https://tatianashavrina.github.io/taiga_site/). Trained ~3 days on 2x1080Ti:
-[RuBERTa-base, batch 256, 20k steps](https://drive.google.com/open?id=1MC-5Qy-qWq1mHMiF1D7GIsUwYLuLanmy)
+A model trained on russian Wiki + [Taiga corpus](https://tatianashavrina.github.io/taiga_site/):
+[RuBERTa-base, batch 264, 65k steps](https://drive.google.com/open?id=1WYpuSCL8oEtW65HIN1izsN_cR5Mizqmd)
 
-F1 score on [Sber SQuAD dataset](https://github.com/vlarine/transformers-ru): 74.05
+<img src="https://github.com/vlarine/ruberta/blob/master/img/train_curve.png" width="600px" />
+
+F1 score on [Sber SQuAD dataset](https://github.com/vlarine/transformers-ru): 78.60
 
 
