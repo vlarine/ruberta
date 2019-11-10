@@ -1,12 +1,13 @@
-TOTAL_UPDATES=200000    # Total number of training steps
+TOTAL_UPDATES=100000    # Total number of training steps
 WARMUP_UPDATES=10000    # Warmup the learning rate over this many updates
 PEAK_LR=0.0001          # Peak learning rate, adjust as needed
 TOKENS_PER_SAMPLE=512   # Max sequence length
 MAX_POSITIONS=512       # Num. positional embeddings (usually same as above)
-MAX_SENTENCES=8         # Number of sequences per batch (batch size)
-UPDATE_FREQ=16          # Increase the batch size 16x
+MAX_SENTENCES=6         # Number of sequences per batch (batch size)
+UPDATE_FREQ=22          # Increase the batch size 16x
+N_GPUS=2
 
-DATA_DIR=../data/bpe
+DATA_DIR=../data/bpe50
 
 python3 train.py --fp16 $DATA_DIR \
     --task masked_lm --criterion masked_lm \
@@ -17,5 +18,8 @@ python3 train.py --fp16 $DATA_DIR \
     --max-sentences $MAX_SENTENCES --update-freq $UPDATE_FREQ \
     --max-update $TOTAL_UPDATES --log-format simple --log-interval 1 \
     --save-interval-updates 500 \
+    --skip-invalid-size-inputs-valid-test \
     --save-dir ../checkpoints \
     --tensorboard-logdir ../logs
+
+#--distributed-world-size N_GPUS \

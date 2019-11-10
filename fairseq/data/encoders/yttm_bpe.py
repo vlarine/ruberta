@@ -8,7 +8,7 @@ from fairseq.data.encoders import register_bpe
 
 import youtokentome as yttm
 
-DEFAULT_VOCAB_BPE = '../data/vocab_50000.bpe'
+DEFAULT_VOCAB_BPE = '../output/vocab.bpe'
 
 
 @register_bpe('yttm')
@@ -32,7 +32,7 @@ class YTTMBPE(object):
         return ' '.join(map(str, self.bpe.encode(x)))
 
     def decode(self, x: str) -> str:
-        return self.bpe.decode(list(map(int, x.split())))[0]
+        return self.bpe.decode(map(int, x.split()))
 
     def is_beginning_of_word(self, x: str) -> bool:
         return self.decode(x).startswith('▁')

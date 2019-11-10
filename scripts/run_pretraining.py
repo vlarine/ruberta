@@ -7,7 +7,7 @@ import youtokentome as yttm
 DATA_DIR = '../data/'
 ALL_FILE = '{}/all.txt'.format(DATA_DIR)
 ALL_FOR_BPE_FILE = '{}/all_for_bpe.txt'.format(DATA_DIR)
-BPE_FILE = '{}/vocab_30000.bpe'.format(DATA_DIR)
+BPE_FILE = '{}/vocab_50000.bpe'.format(DATA_DIR)
 TMP_FILE = '{}/bpe_tmp_.txt'.format(DATA_DIR)
 
 
@@ -33,9 +33,9 @@ if True:
     print('Train BPE model')
     yttm.BPE.train(
         data=TMP_FILE,
-        vocab_size=30000,
+        vocab_size=50000,
         model=BPE_FILE,
-        n_threads=4,
+        n_threads=10,
         coverage=0.9999,
         pad_id=1, unk_id=3, bos_id=0, eos_id=2
     )
@@ -47,7 +47,7 @@ if True:
     print(bpe.vocab()[:1000])
 
 
-if True:
+if False:
     print('Split train/test/valid')
     with open(ALL_FILE) as f, \
          open('{}/valid.txt'.format(DATA_DIR), 'w') as wf1, \
