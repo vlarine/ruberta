@@ -28,8 +28,8 @@ class YTTMBPE(object):
         )
         self.bpe = yttm.BPE(model=vocab_bpe)
 
-    def encode(self, x: str) -> str:
-        return ' '.join(map(str, self.bpe.encode(x)))
+    def encode(self, x: str, dropout_prob: float) -> str:
+        return ' '.join(map(str, self.bpe.encode(x, dropout_prob=dropout_prob)))
 
     def decode(self, x: str) -> str:
         return self.bpe.decode(map(int, x.split()))

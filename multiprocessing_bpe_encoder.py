@@ -50,6 +50,7 @@ def main():
     parser.add_argument("--max-len", type=int, default=512)
     parser.add_argument("--size", type=int, default=-1)
     parser.add_argument("--start", type=int, default=0)
+    parser.add_argument("--dropout-prob", type=float, default=0)
     args = parser.parse_args()
 
     assert len(args.inputs) == len(args.outputs), \
@@ -103,7 +104,7 @@ class MultiprocessingEncoder(object):
 
     def encode(self, line):
         global bpe
-        ids = bpe.encode(line)
+        ids = bpe.encode(line, dropout_prob=self.args.dropout_prob)
         return ids
         #print(ids)
         #ids = list(map(str, ids))
